@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My ChatRoom</title>
+        <link href={{url_for('static', filename='styles.css')}}/>
+    </head>
+    <script>
+    const sendChat = ()=>{
+        const msg = document.getElementById('msgBox').value
+        fetch('/add',{
+            method:'POST',
+            body:msg
+        })
+        location.reload()
+    }
+
+    const checkSend = (e)=>{
+        console.log(e)
+    }
+    window.onload(()=>{
+        document.getElementById('msgBox').addEventListener('input',checkSend)
+    })
+    </script>
+    <body>
+        <div class="box">
+        {% for text in chatData%}
+        <div>{{text}}</div>
+        {% endfor %}
+        </div>
+        <div>
+            <input id="msgBox"/>
+            <button onclick="sendChat()">+</button>
+        </div>
+    </body>
+</html>
