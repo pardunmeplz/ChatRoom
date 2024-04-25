@@ -2,3 +2,8 @@
     box-shadow: 0 0 0 0.2rem rgba(0, 127, 255, 0.25);
     height: 50vh;
 }
+
+.chatContainer{
+    display: flex;
+    flex-direction: column;
+}

@@ -2,8 +2,9 @@
 <html>
     <head>
         <title>My ChatRoom</title>
-        <link href={{url_for('static', filename='styles.css')}}/>
+        <link rel="stylesheet" href={{url_for('static', filename='styles.css')}}/>
     </head>
+    <script src={{url_for('static',filename='chatview.js')}}></script>
     <script>
     const sendChat = ()=>{
         const msg = document.getElementById('msgBox').value
@@ -17,15 +18,12 @@
     const checkSend = (e)=>{
         console.log(e)
     }
-    window.onload(()=>{
+    window.addEventListener('load',()=>{
         document.getElementById('msgBox').addEventListener('input',checkSend)
     })
     </script>
     <body>
-        <div class="box">
-        {% for text in chatData%}
-        <div>{{text}}</div>
-        {% endfor %}
+        <div class="box" id="chatView">
         </div>
         <div>
             <input id="msgBox"/>
