@@ -3,7 +3,7 @@ from flask_socketio import emit, SocketIO
 import json
 
 myApp = Flask(__name__)
-myChat = ['heyyya', 'chiiiiiiiis','wasssuuuup']
+myChat = []
 socket = SocketIO(app=myApp)
 
 @myApp.route('/')
@@ -14,10 +14,10 @@ def Home():
 def connect():
     emit("connect",json.dumps(myChat))
 
-@socket.on("data")
+@socket.on("message")
 def handleData(data):
-    myChat.append(data)
-    emit("data",json.dumps(myChat),broadcast=True)
+    myChat.append(str(data))
+    emit("message",json.dumps(myChat),broadcast=True)
 
 @socket.on("disconnect")
 def disconnected():

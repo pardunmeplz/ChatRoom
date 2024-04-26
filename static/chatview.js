@@ -1,7 +1,15 @@
 let chatCountainer = document.createElement('div')
-
+const socket = io.connect(`${location.protocol}//127.0.0.1:5000`)
 window.addEventListener('load',()=>{
-    renderChat(['heyya','wasssssup','newgamme'])
+    
+    socket.on('connect',(msg)=>{
+        const data = msg?JSON.parse(msg):[]
+        renderChat(data)
+    })
+    socket.on('message',(msg)=>{
+        const data = JSON.parse(msg)
+        renderChat(data)
+    })
 })
 
 const renderChat = (data)=>{
