@@ -1,5 +1,3 @@
-let chatCountainer = document.createElement('div')
-const socket = io.connect(`${location.protocol}//127.0.0.1:5000`)
 window.addEventListener('load',()=>{
     
     socket.on('connect',(msg)=>{
@@ -12,6 +10,7 @@ window.addEventListener('load',()=>{
     })
 })
 
+let chatCountainer = document.createElement('div')
 const renderChat = (data)=>{
     const element = document.getElementById("chatView")
     if (element.children.length>0)element.removeChild(chatCountainer)
@@ -19,7 +18,8 @@ const renderChat = (data)=>{
     chatCountainer.classList.add('chatContainer')
     for(msg of data){
         const item = document.createElement('span')
-        item.innerHTML = msg
+        item.innerHTML = msg.text
+        item.className = msg.type === 'status'?'light':''
         chatCountainer.appendChild(item)
     }
     element.appendChild(chatCountainer)

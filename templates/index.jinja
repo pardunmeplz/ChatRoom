@@ -5,22 +5,9 @@
         <link rel="stylesheet" href={{url_for('static', filename='styles.css')}}/>
     </head>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script src={{url_for('static',filename='socket.js')}}></script>
     <script src={{url_for('static',filename='chatview.js')}}></script>
-    <script>
-    const sendChat = ()=>{
-        const msg = document.getElementById('msgBox').value
-        const socket = io.connect(`${location.protocol}//127.0.0.1:5000`)
-        socket.emit('message',msg)
-        document.getElementById('msgBox').value = ''
-    }
-
-    const checkSend = (e)=>{
-        console.log(e)
-    }
-    window.addEventListener('load',()=>{
-        document.getElementById('msgBox').addEventListener('input',checkSend)
-    })
-    </script>
+    <script src={{url_for('static',filename='msgbox.js')}}></script>
     <body>
         <div class="box" id="chatView">
         </div>
