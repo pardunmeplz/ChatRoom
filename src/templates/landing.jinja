@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My ChatRoom</title>
+        <link rel="stylesheet" href={{url_for('static', filename='styles.css')}}/>
+    </head>
+    <script>
+    const startChat = ()=>{
+        const name = document.getElementById('userBox').value
+        if (name.length < 5){
+            alert('name should be atleast 5 letters')
+            return}
+        fetch('/',{
+            method:'POST',
+            body: name
+        })
+        location.reload()
+        
+
+    }
+    </script>
+    <body>
+        <div>
+        <span>Enter a name to use</span>
+            <input id="userBox"/>
+            <button onclick="startChat()">-></button>
+        </div>
+    </body>
+</html>
